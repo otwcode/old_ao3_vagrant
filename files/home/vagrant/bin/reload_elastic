@@ -1,0 +1,15 @@
+#!/bin/bash
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.perlbrew/etc/bashrc"  ]] && . "$HOME/.perlbrew/etc/bashrc" 
+
+export RAILS_ENV=development
+sudo /etc/init.d/elasticsearch stop
+sudo  rm -rf /var/lib/elasticsearch/elasticsearch/*
+sudo  /etc/init.d/elasticsearch start
+cd $HOME/app/current
+for i in Tag  Work Pseud Bookmark
+do
+  echo "Reindexing $i"
+  bundle exec rake environment tire:import CLASS="$i" FORCE=true
+done
+

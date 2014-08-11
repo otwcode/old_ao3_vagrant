@@ -1,0 +1,15 @@
+SESSION_KEY: '_vagrant_session'
+SESSION_SECRET: 'sAephocha6opienugheesiebooyahfaiqueikiewaungoodahngohjohghakuvipezuphooghaquohcierohsetaibahseishiree'
+ERROR_PREFIX: "[vagrant] "
+APP_URL: http://127.0.0.1:8081
+APP_NAME: ******Vagrant(AO3)******
+RODUCTION_CACHE: "memcache"
+HET_CATEGORY_TAG_NAME: F/M
+SLASH_CATEGORY_TAG_NAME: M/M
+FEMSLASH_CATEGORY_TAG_NAME: F/F
+ITEMS_PER_PAGE: 20
+INVITATION_LIMIT: 0
+MAX_SIGNUPS_FOR_LIVE_SUMMARY: 1
+MEMCACHED_URL: '127.0.0.1'
+ELASTICSEARCH_URL: 'http://127.0.0.1:9200'
+

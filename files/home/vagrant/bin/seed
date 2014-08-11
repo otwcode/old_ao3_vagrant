@@ -1,0 +1,16 @@
+#!/bin/bash
+rm -f ~/conf/seed.dump
+CURRENT_MD5=` md5sum ~/conf/seed.dump.gz | awk '{print $1}'`
+MD5=` wget  http://media.transformativeworks.org/ao3/vagrant/seed.dump.gz.md5?$CURRENT_MD5 -O -  2> /dev/null`
+if [ ! "$MD5" == "$CURRENT_MD5" ] ; then
+   wget http://media.transformativeworks.org/ao3/vagrant/seed.dump.gz  -O  ~/conf/seed.dump.gz 
+fi
+cd $HOME/app/current
+bundle exec rake db:drop:all
+bundle exec rake db:create:all
+zcat  ~/conf/seed.dump.gz  | mysql
+bundle exec rake db:migrate
+bundle exec rake After
+bundle exec rake skins:load_site_skins
+bundle exec rake db:test:prepare
+~/bin/reload_elastic

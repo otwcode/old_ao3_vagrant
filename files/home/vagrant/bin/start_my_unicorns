@@ -1,0 +1,30 @@
+#!/bin/bash
+me=`whoami`
+CONF=$HOME/conf/unicorn.rb
+unicorn_master_pid=`ps ax | grep $me.sock | grep master | awk '{print $1}'` 
+if [ "$unicorn_master_pid" != "" ]; then
+  echo "removing old unicorn master"
+  kill_my_unicorns
+  sleep 5
+fi
+echo "starting new unicorn master"
+if [ -f "config.ru" ]; then
+  LOC=`pwd -P`
+  echo setting $HOME/app/current to $LOC
+  rm $HOME/app/current
+  ln -s "$LOC" "$HOME/app/current"
+
+  echo -n copying config
+  for i in database.yml  local.yml  redis.yml ;  do
+    echo -n " $i"
+    cp ~/conf/$i ./config
+  done
+  echo
+  bundle exec unicorn -l /tmp/${me}.sock -c $CONF &
+  files=(/usr/local/etc/art/unicorn_*)
+  WHICH="${files[RANDOM % ${#files[@]}]}"
+  cat $WHICH
+  #cat /usr/local/etc/unicorn_art
+else
+  echo "Ooops! You don't appear to be in your rails application directory"
+fi

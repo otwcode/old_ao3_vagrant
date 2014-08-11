@@ -1,0 +1,12 @@
+#!/bin/bash
+cd ~/app/current
+echo -n copying config
+for i in database.yml  local.yml  redis.yml ;  do
+    echo -n " $i"
+    cp ~/conf/$i ./config
+done
+
+# Mailing does nto work right now
+for i in reindex_low reindex_high utilities collection ; do
+  QUEUE=$i bundle exec rake environment resque:work  &
+done

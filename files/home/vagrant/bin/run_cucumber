@@ -1,0 +1,22 @@
+#!/bin/sh
+cd ~/app/current
+cp config/redis-cucumber.conf.example config/redis-cucumber.conf
+RAILS_ENV=test
+
+
+echo "Resetting database"
+mysql -e "drop database vagrant_test  "
+mysql -e "create  database vagrant_test "
+bundle exec rake db:schema:load 
+bundle exec rake db:migrate
+
+echo -n copying config
+for i in database.yml  local.yml  redis.yml ;  do
+    echo -n " $i"
+    cp ~/conf/$i ./config
+done
+echo 
+echo "Running bundle install"
+bundle install
+echo "running cucumber features"
+bundle exec cucumber features 

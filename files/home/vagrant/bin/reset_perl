@@ -1,0 +1,24 @@
+#!/bin/bash
+export PERLBREW_ROOT=~/.perlbrew
+rm -rf $PERLBREW_ROOT
+curl -kL http://install.perlbrew.pl | bash
+. ~/.perlbrew/etc/bashrc
+perlbrew install http://www.cpan.org/src/5.0/perl-5.19.5.tar.gz
+perlbrew switch perl-5.19.5
+curl -L http://cpanmin.us | perl - App::cpanminus
+cpanm install Palm::PDB
+cpanm install XML::Parser::Lite::Tree
+cpanm install GD --force
+cpanm install Image::BMP
+cpanm install Image::Size
+cpanm install HTML::TreeBuilder
+cpanm install Getopt::Mixed
+cpanm install Date::Parse
+cpanm install Date::Format
+cpanm install URI::Escape
+cpanm install DateTime
+cpanm install Redis
+cpanm install DBI
+cpanm install DBD::mysql
+cpanm install Cache::Memcached
+cpanm install Resque

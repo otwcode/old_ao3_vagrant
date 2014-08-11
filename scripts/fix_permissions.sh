@@ -43,6 +43,7 @@ done
 /etc/init.d/redis-server2 /etc/rc2.d/S20redis-server2
 /etc/init.d/redis-server1 /etc/rc6.d/K20redis-server1
 /etc/init.d/redis-server2 /etc/rc6.d/K20redis-server2
-/etc/nginx/sites-enabled/ao3.conf /etc/nginx/sites-available/ao3.conf
+/etc/init.d/mysql /etc/rc2.d/S20mysql
+/etc/init.d/mysql /etc/rc6.d/K20mysql
 EOT
 

@@ -20,9 +20,9 @@
       "guest_os_type": "Ubuntu",
       "headless": false,
       "http_directory": "http",
-      "iso_checksum": "3aa14ca13d52df070870d39306f4a4eb",
+      "iso_checksum": "08d25bf879e353686a974b7b14ae7d81",
       "iso_checksum_type": "md5",
-      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.1-server-i386.iso",
+      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-i386.iso",
       "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -51,6 +51,11 @@
   ],
   "provisioners": [
     {
+     "type": "file",
+     "source": "files",
+     "destination": "/var/tmp/files"
+    },
+    {
       "override": {
         "virtualbox-iso": {
           "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'"
@@ -62,16 +67,33 @@
       "type": "shell"
     },
     {
+      "override": {
+        "virtualbox-iso": {
+          "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'"
+        }
+      },
       "scripts": [
-        "scripts/vagrant_setup.sh"
+        "scripts/ao3_system_software.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "override": {
+        "virtualbox-iso": {
+          "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'"
+        }
+      },
+      "scripts": [
+        "scripts/fix_permissions.sh"
       ],
       "type": "shell"
     },
     {
       "scripts": [
-        "scripts/mysql_setup.sh"
+        "scripts/vagrant_setup.sh"
       ],
       "type": "shell"
     }
+
   ]
 }
