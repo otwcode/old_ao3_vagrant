@@ -73,7 +73,31 @@
         }
       },
       "scripts": [
+        "scripts/fix_permissions.sh" 
+      ],
+      "type": "shell"
+    },
+    {
+      "pause_before": "30s" ,
+      "override": {
+        "virtualbox-iso": {
+          "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'"
+        }
+      },
+      "scripts": [
         "scripts/ao3_system_software.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "scripts": [
+        "scripts/vagrant_setup.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "scripts": [
+        "scripts/ao3app_setup.sh"
       ],
       "type": "shell"
     },
@@ -84,16 +108,9 @@
         }
       },
       "scripts": [
-        "scripts/fix_permissions.sh"
-      ],
-      "type": "shell"
-    },
-    {
-      "scripts": [
-        "scripts/vagrant_setup.sh"
+        "scripts/cleanup.sh"
       ],
       "type": "shell"
     }
-
   ]
 }

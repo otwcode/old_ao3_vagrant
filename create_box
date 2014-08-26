@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+#export PACKER_LOG=1
+rm -rf  rm -rf output-virtualbox-iso || true
+rm  -f packer_virtualbox-iso_virtualbox.box || true
+packer build -only virtualbox-iso packer_ao3.json
+vagrant box remove vagrant_machine || true
+vagrant box add vagrant_machine packer_virtualbox-iso_virtualbox.box

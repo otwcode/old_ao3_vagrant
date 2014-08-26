@@ -31,4 +31,4 @@ gem install rvm-capistrano
 gem install bundler
 gem install god
 gem install unicorn
-
+gem install mailcatcher

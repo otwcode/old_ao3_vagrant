@@ -3,9 +3,10 @@
 [[ -s "$HOME/.perlbrew/etc/bashrc"  ]] && . "$HOME/.perlbrew/etc/bashrc" 
 
 export RAILS_ENV=development
-sudo /etc/init.d/elasticsearch stop
-sudo  rm -rf /var/lib/elasticsearch/elasticsearch/*
-sudo  /etc/init.d/elasticsearch start
+echo 'vagrant' | sudo kill -9 `cat /var/run/elasticsearch.pid`
+echo 'vagrant' | sudo /etc/init.d/elasticsearch stop
+echo 'vagrant' | sudo  rm -rf /var/lib/elasticsearch/elasticsearch/*
+echo 'vagrant' | sudo  /etc/init.d/elasticsearch start
 cd $HOME/app/current
 for i in Tag  Work Pseud Bookmark
 do
