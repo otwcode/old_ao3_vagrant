@@ -20,7 +20,7 @@ if [ -d ~/.rvm ] ; then
   mv ~/.rvm ~/.rvm-`date +%F-%H-%M-%N`
 fi
 
-\curl -L https://get.rvm.io | bash -s stable --autolibs=enabled
+/usr/bin/curl -L https://get.rvm.io | bash -s stable --autolibs=enabled
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 rvm autolibs read-fail

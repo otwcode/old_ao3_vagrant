@@ -1,7 +1,7 @@
 #!/bin/bash
 export PERLBREW_ROOT=~/.perlbrew
 rm -rf $PERLBREW_ROOT
-curl -kL http://install.perlbrew.pl | bash
+/usr/bin/curl -kL http://install.perlbrew.pl | bash
 . ~/.perlbrew/etc/bashrc
 perlbrew install http://www.cpan.org/src/5.0/perl-5.19.5.tar.gz
 perlbrew switch perl-5.19.5

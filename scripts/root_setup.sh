@@ -30,7 +30,7 @@ apt-get install -y -q calibre
 apt-get -y -q install  memcached
 # mysql
 apt-get -y -q install  mysql-server  libmysqlclient-dev  
-/etc/init.d/mysql start
+/etc/init.d/mysql restart
 # nginx
 apt-get -y -q install nginx
 # redis
@@ -40,3 +40,4 @@ apt-get install -y -q  gawk libreadline6-dev zlib1g-dev libssl-dev libyaml-dev l
 # squid
 apt-get install -y -q  squid3
 
+exit 0

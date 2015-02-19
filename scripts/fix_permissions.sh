@@ -2,7 +2,6 @@
 
 set -e
 rsync -av /var/tmp/files/ /
-gzip -f /home/vagrant/conf/seed.dump
 
 (while read line; do
 FILEN="$( echo $line | awk '{print $1}' )"
@@ -39,7 +38,6 @@ done
 /home/vagrant/bin/start_my_unicorns vagrant:vagrant 755
 /home/vagrant/bin/start_my_workers vagrant:vagrant 755
 /home/vagrant/bin/reset_rvm vagrant:vagrant 755
-/home/vagrant/bin/seed vagrant:vagrant 755
 /home/vagrant/bin/start_mailcatcher vagrant:vagrant 755
 /home/vagrant/bin/kill_my_workers vagrant:vagrant 755
 /home/vagrant/bin/reload_elastic vagrant:vagrant 755
@@ -49,7 +47,6 @@ done
 /home/vagrant/conf/redis.yml vagrant:vagrant 644
 /home/vagrant/conf/database.yml vagrant:vagrant 644
 /home/vagrant/conf/redis-cucumber.conf vagrant:vagrant 644
-/home/vagrant/conf/seed.dump.gz vagrant:vagrant 644
 /home/vagrant/conf/unicorn.rb vagrant:vagrant 644
 /home/vagrant/app  vagrant:vagrant 755
 /home/vagrant/app/deploy  vagrant:vagrant 755
